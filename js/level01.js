@@ -1,43 +1,44 @@
-﻿import Player from './player.js';
+﻿import Bullet from './bullet.js';
+import Player from './player.js';
 export default class Level01 extends Phaser.Scene {
     
     constructor() {
         super({
             key: "Level01"
         });
-        this._player = null;
-        this._bullets = null;
-        this._cursors = null;
-        this._fireButton = null;
+        this.Player = null;
+        this.Bullets = null;
+        this.Cursors = null;
+        this.FireButton = null;
     }
 
     preload() {}
 
-    create = () => {
+    create() {
         this.add.image(0,0,'bg_level01').setOrigin(0,0);
-        this._bullets = new Bullets(this);
-        this._player = new Player(this);
+        this.Bullet = new Bullet(this);
+        this.Player = new Player(this);
         
-        this._cursors = this.input.createCursorKeys();
-        this._fireButton = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.Cursors = this.input.keyboard.createCursorKeys();
+        this.FireButton = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
-    update() {
+    update = () => {
 
-        this._player.body.velocity.x = 0;
+        this.Player.gameObject.body.velocity.x = 0;
 
-        if (this._cursors.left.isDown)
+        if (this.Cursors.left.isDown)
         {
-            this._player.body.velocity.x = -300;
+            this.Player.gameObject.body.velocity.x = -300;
         }
-        else if (this._cursors.right.isDown)
+        else if (this.Cursors.right.isDown)
         {
-            this._player.body.velocity.x = 300;
+            this.Player.gameObject.body.velocity.x = 300;
         }
 
-        if (this._fireButton.isDown)
+        if (this.FireButton.isDown)
         {
-            this._bullets.fireBullet(this.time.now);
+            this.Bullet.fireBullet(this.time.now);
         }
 
     }

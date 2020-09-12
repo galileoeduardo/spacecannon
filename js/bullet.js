@@ -3,28 +3,28 @@
     constructor(scene) {
         this._scene = scene;
         this._bulletTime = 0;
-        this._bullets = this._scene.physics.add.group({
+        this.Group = this._scene.physics.add.group({
             key: 'bullet',
-            quantity: 24,
+            quantity: 1,
             bounceX: 1,
             bounceY: 1,
-            collideWorldBounds: true,
+            collideWorldBounds: false,
             outOfBoundsKill: true,
-            velocityX: 300,
-            velocityY: 150
+            velocityX: 0,
+            velocityY: 200
         });
     }
     
-    static fireBullet = (time) => {
-        console.log(Object.getOwnPropertyNames(this));
-        console.log(this._bullets.scene.player.x)
+    fireBullet = (time) => {
+
         if (time > this._bulletTime)
         {
-            
-            if (this._bullets[0])
+            if (!!this.Group.getFirst(true))
             {
-                this._bullets[0].reset(this._bullets.scene.player.x + 6, this._bullets.scene.player.x - 12);
-                this._bullets[0].body.velocity.y = -600;
+                let bullet = this.Group.getFirst(true);
+                bullet.x = this._scene.Player.gameObject.x + 6;
+                bullet.y =  this._scene.Player.gameObject.y - 12;
+                bullet.body.velocity.y = -600;
                 this._bulletTime = time + 100;
             }
         }
