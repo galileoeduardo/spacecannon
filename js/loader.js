@@ -8,7 +8,7 @@
     preload() {
 
         this.load.on('complete', () => {
-            this.scene.start('Level01');
+            this.scene.start('Level');
         });
 
         this.load.setBaseURL('/assets/sprites/');

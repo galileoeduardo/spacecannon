@@ -1,7 +1,7 @@
 ﻿import Bullet from './bullet.js';
 import Player from './player.js';
-import Keyboard from './keyboard.js'
-export default class Level01 extends Phaser.Scene {
+import Keyboard from './keyboard.js';
+export default class Level extends Phaser.Scene {
     
     static Player;
     static Bullets;

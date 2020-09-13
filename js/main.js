@@ -1,5 +1,5 @@
 import Loader from './loader.js';
-import Level01 from './level01.js';
+import Level from './level.js';
 import Bullet from './bullet.js';
 
 const config = {
@@ -14,7 +14,7 @@ const config = {
         },
     scene: [
         Loader,
-        Level01
+        Level
     ]
 };
 
