@@ -1,11 +1,14 @@
 ﻿export default class Bullets {
+
+    static Group;
+    static bulletTime = 0;
     
     constructor(scene) {
         this._scene = scene;
-        this._bulletTime = 0;
+        this.bulletTime = 0;
         this.Group = this._scene.physics.add.group({
             key: 'bullet',
-            quantity: 1,
+            quantity: 24,
             bounceX: 1,
             bounceY: 1,
             collideWorldBounds: false,
@@ -15,9 +18,9 @@
         });
     }
     
-    fireBullet = (time) => {
+    fireBullet(time) {
 
-        if (time > this._bulletTime)
+        if (time > this.bulletTime)
         {
             if (!!this.Group.getFirst(true))
             {
@@ -25,7 +28,7 @@
                 bullet.x = this._scene.Player.gameObject.x + 6;
                 bullet.y =  this._scene.Player.gameObject.y - 12;
                 bullet.body.velocity.y = -600;
-                this._bulletTime = time + 100;
+                this.bulletTime = time + 100;
             }
         }
     
