@@ -8,13 +8,11 @@
         this.bulletTime = 0;
         this.Group = this._scene.physics.add.group({
             key: 'bullet',
-            quantity: 24,
-            bounceX: 1,
-            bounceY: 1,
+            quantity: 4,
             collideWorldBounds: false,
             outOfBoundsKill: true,
-            velocityX: 0,
-            velocityY: 200
+            velocityX: 1250,
+            velocityY: -600
         });
     }
     
@@ -22,12 +20,12 @@
 
         if (time > this.bulletTime)
         {
-            if (!!this.Group.getFirst(true))
+            if (!!this.Group)
             {
                 let bullet = this.Group.getFirst(true);
-                bullet.x = this._scene.Player.gameObject.x + 6;
-                bullet.y =  this._scene.Player.gameObject.y - 12;
-                bullet.body.velocity.y = -600;
+                bullet.x = 32;
+                bullet.y =  192;
+                bullet._rotation = 67.5;
                 this.bulletTime = time + 100;
             }
         }

@@ -1,6 +1,5 @@
 import Loader from './loader.js';
 import Level from './level.js';
-import Bullet from './bullet.js';
 
 const config = {
         type: Phaser.AUTO,
