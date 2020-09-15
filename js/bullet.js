@@ -11,7 +11,7 @@
             quantity: 4,
             collideWorldBounds: false,
             outOfBoundsKill: true,
-            velocityX: 1250,
+            velocityX: 1200,
             velocityY: -600
         });
     }
@@ -25,7 +25,7 @@
                 let bullet = this.Group.getFirst(true);
                 bullet.x = 32;
                 bullet.y =  192;
-                bullet._rotation = 67.5;
+                bullet._rotation = 45;
                 this.bulletTime = time + 100;
             }
         }
