@@ -26,17 +26,18 @@ export default class Level extends Phaser.Scene {
 
     update() {
         this.Enemies.update();
-        this.Player.gameObject.body.velocity.x = 0;
+        
+        //this.Player.gameObject.body.velocity.x = 0;
 
         if (this.Keyboard.Cursors.left.isDown)
         {
-            this.Player.gameObject.body.velocity.x = -300;
+            this.Bullet.fireBullet(this.time.now);
         }
         else if (this.Keyboard.Cursors.right.isDown)
         {
-            this.Player.gameObject.body.velocity.x = 300;
+            this.Bullet.fireBullet(this.time.now);
         }
-
+        
         if (this.Keyboard.FireButton.isDown)
         {
             this.Bullet.fireBullet(this.time.now);
