@@ -1,25 +1,26 @@
 ﻿export default class Enemies {
 
     static handlerEnd;
+    static enemies;
+    enemies_actual_position = new Array();
     speed = 100;
-    enemy_base = {
-        position: {  x: 0, y: -64 }
-    };
 
     config = [ 
-        { id:"enemy01", spritex:32, spritey:64, force: 5 },
+        { id:"enemy01", spritex:32, spritey:64, force: 3 },
         { id:"enemy02", spritex:32, spritey:64, force: 3 },
-        { id:"enemy03", spritex:32, spritey:64, force: 4 },
-        { id:"enemy01", spritex:32, spritey:64, force: 1 },
-        { id:"enemy02", spritex:32, spritey:64, force: 2 },
-        { id:"enemy03", spritex:32, spritey:64, force: 3 }
+        { id:"enemy03", spritex:32, spritey:64, force: 4 }
     ];
-
-    enemies = Array();
 
     constructor(scene) {
 
         this._scene = scene;
+
+        this.enemies = this._scene.physics.add.group({
+            quantity: this.config.length,
+            collideWorldBounds: false,
+            velocityX: 0,
+            velocityY: 0
+        });
 
         for (let i = 0; i < this.config.length; i++) {
             
@@ -31,25 +32,23 @@
             ? { ...addConfig, start_on: 'right', start_x: 512 } 
             : { ...addConfig, start_on: 'left', start_x: -64};
             
-
-            this.enemies[i] = this._scene.physics.add.sprite( this.config[i].spritex, this.config[i].spritey, this.config[i].id);
-            this.enemies[i].config = addConfig;
-            
-            this.enemies[i].x = this.enemy_base.position.x;
-            this.enemies[i].y = this.enemy_base.position.y * (i+1);
-            
+            this.enemies.children.entries[i] = this._scene.physics.add.sprite( this.config[i].spritex, this.config[i].spritey, this.config[i].id);
+            this.enemies.children.entries[i].config = addConfig;
         }
+
+        Phaser.Actions.SetXY(this.enemies.getChildren(), 0, -96, 0, -64);
         
         this.launch(this.getEnemyFromBase());
 
     }
 
-    getBoolRandon() {
-        return Math.round(Math.random() * 1);
-    }
-
     update() {
-        this.enemies.forEach(enemy => {
+
+        this.enemies.children.entries.forEach(({x,y,on_base}) => {
+            if (!on_base) this.enemies_actual_position.push({x,y});
+        });
+        
+        this.enemies.children.entries.forEach(enemy => {
             
             //move para faixa inferior
             if(enemy.config.on_base == false && enemy.x < -64 || enemy.x > 512) {
@@ -58,14 +57,20 @@
                     let next = this.getEnemyFromBase();
                     if (next != undefined) this.launch(next);
                 }
+
+                this.moveLower(enemy);
                 
-                enemy.x = enemy.config.start_x;
-                enemy.y += 32;
-                
-            }    
+            }
 
             
         });
+
+        this.enemies_actual_position = [];
+
+    }
+
+    getBoolRandon() {
+        return Phaser.Math.Between(0, 1);
     }
 
     launch(enemy) {
@@ -83,7 +88,12 @@
     }
 
     getEnemyFromBase() {
-        return this.enemies.find(enemy => enemy.config.on_base);
+        return this.enemies.children.entries.find(enemy => enemy.config.on_base);
+    }
+
+    moveLower(enemy) {
+        enemy.x = enemy.config.start_x;
+        enemy.y += 32;
     }
 
 }
