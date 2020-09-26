@@ -3,12 +3,18 @@
     static timedEnemyLaunchEvent;
     static enemies;
     enemies_actual_position = new Array();
-    speed = 25;
+    speed = 50;
 
     config = [ 
         { id:"enemy01", spritex:32, spritey:64, force: 3.2 },
+        { id:"enemy02", spritex:32, spritey:64, force: 3.6 },
+        { id:"enemy03", spritex:32, spritey:64, force: 4.1 },
+        { id:"enemy01", spritex:32, spritey:64, force: 3.2 },
+        { id:"enemy02", spritex:32, spritey:64, force: 3.4 },
+        { id:"enemy03", spritex:32, spritey:64, force: 4.3 },
+        { id:"enemy01", spritex:32, spritey:64, force: 3.2 },
         { id:"enemy02", spritex:32, spritey:64, force: 3.5 },
-        { id:"enemy03", spritex:32, spritey:64, force: 4.1 }
+        { id:"enemy03", spritex:32, spritey:64, force: 4.5 }
     ];
 
     constructor(scene) {
@@ -39,7 +45,7 @@
         Phaser.Actions.SetXY(this.enemies.getChildren(), 0, -96, 0, -64);
 
         this.timedEnemyLaunchEvent = this._scene.time.addEvent({
-            delay: 10000,
+            delay: 5000,
             callback: this.launch,
             callbackScope: this,
             repeat: this.config.length - 1,
@@ -59,9 +65,16 @@
         this.enemies.children.entries.forEach(enemy => {
             
             const same_level = this.enemies_actual_position.find(({config,y}) => y == enemy.y && config.id != enemy.config.id);
-            //enemy.config.index == same_level.config.index
-            if (same_level != undefined) {
-                this._scene.Console.text = enemy.config.index + " | " + same_level.config.index;
+            
+            if (same_level != undefined) { //enemy in the same level
+                const distance = Phaser.Math.Distance.Between(
+                    enemy.x,
+                    enemy.y,
+                    this.enemies.children.entries[same_level.config.index].x,
+                    this.enemies.children.entries[same_level.config.index].y
+                );
+                if (distance < 64) this.dodge(this.enemies.children.entries[same_level.config.index]);
+
             }
 
             if(enemy.config.on_base == false && enemy.x < -64 || enemy.x > 512) { //fora da tela
@@ -103,6 +116,10 @@
     moveLower(enemy) {
         enemy.x = enemy.config.start_x;
         enemy.y += 32;
+    }
+
+    dodge(enemy) {
+        enemy.y = enemy.y + 32;
     }
 
 }
