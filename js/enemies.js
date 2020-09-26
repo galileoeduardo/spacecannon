@@ -1,14 +1,14 @@
 ﻿export default class Enemies {
 
-    static handlerEnd;
+    static timedEnemyLaunchEvent;
     static enemies;
     enemies_actual_position = new Array();
-    speed = 100;
+    speed = 25;
 
     config = [ 
-        { id:"enemy01", spritex:32, spritey:64, force: 3 },
-        { id:"enemy02", spritex:32, spritey:64, force: 3 },
-        { id:"enemy03", spritex:32, spritey:64, force: 4 }
+        { id:"enemy01", spritex:32, spritey:64, force: 3.2 },
+        { id:"enemy02", spritex:32, spritey:64, force: 3.5 },
+        { id:"enemy03", spritex:32, spritey:64, force: 4.1 }
     ];
 
     constructor(scene) {
@@ -37,27 +37,36 @@
         }
 
         Phaser.Actions.SetXY(this.enemies.getChildren(), 0, -96, 0, -64);
-        
-        this.launch(this.getEnemyFromBase());
+
+        this.timedEnemyLaunchEvent = this._scene.time.addEvent({
+            delay: 10000,
+            callback: this.launch,
+            callbackScope: this,
+            repeat: this.config.length - 1,
+            startAt: 5000 
+        });
 
     }
 
     update() {
 
-        this.enemies.children.entries.forEach(({x,y,on_base}) => {
-            if (!on_base) this.enemies_actual_position.push({x,y});
+        this.enemies.children.entries.forEach(({config,x,y,on_base}) => {
+            if (!on_base) this.enemies_actual_position.push(
+                {config,x,y}
+            );
         });
-        
+
         this.enemies.children.entries.forEach(enemy => {
             
-            //move para faixa inferior
-            if(enemy.config.on_base == false && enemy.x < -64 || enemy.x > 512) {
-                
-                if(enemy.y == enemy.config.start_y) { //saiu da tela na primeira faixa de cima
-                    let next = this.getEnemyFromBase();
-                    if (next != undefined) this.launch(next);
-                }
+            const same_level = this.enemies_actual_position.find(({config,y}) => y == enemy.y && config.id != enemy.config.id);
+            //enemy.config.index == same_level.config.index
+            if (same_level != undefined) {
+                this._scene.Console.text = enemy.config.index + " | " + same_level.config.index;
+            }
 
+            if(enemy.config.on_base == false && enemy.x < -64 || enemy.x > 512) { //fora da tela
+                
+                //move para faixa inferior
                 this.moveLower(enemy);
                 
             }
@@ -73,8 +82,8 @@
         return Phaser.Math.Between(0, 1);
     }
 
-    launch(enemy) {
-        
+    launch() {
+        const enemy = this.getEnemyFromBase();
         enemy.config.on_base = false;
         
         enemy.x = enemy.config.start_x;

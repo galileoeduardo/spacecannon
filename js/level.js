@@ -7,6 +7,7 @@ export default class Level extends Phaser.Scene {
     static Player;
     static Bullets;
     static Keyboard;
+    static Console;
     
     constructor() {
         super({
@@ -22,6 +23,8 @@ export default class Level extends Phaser.Scene {
         this.Player = new Player(this);
         this.Enemies = new Enemies(this);
         this.Keyboard = new Keyboard(this);
+
+        this.Console = this.add.text(10, 10, 'Console', { font: '"Press Start 2P"' });
     }
 
     update() {
