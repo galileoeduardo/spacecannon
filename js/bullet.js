@@ -10,13 +10,11 @@
             key: 'bullet',
             quantity: 4,
             collideWorldBounds: false,
-            outOfBoundsKill: true,
-            velocityX: 1200,
-            velocityY: -600
+            outOfBoundsKill: true
         });
     }
     
-    fireBullet(time) {
+    fireBulletLeft(time) {
 
         if (time > this.bulletTime)
         {
@@ -26,7 +24,27 @@
                 bullet.x = 32;
                 bullet.y =  192;
                 bullet._rotation = 45;
-                this.bulletTime = time + 100;
+                bullet.body.velocity.x = 1200;
+                bullet.body.velocity.y = -600;
+                this.bulletTime = time + 250;
+            }
+        }
+    
+    }
+
+    fireBulletRight(time) {
+
+        if (time > this.bulletTime)
+        {
+            if (!!this.Group)
+            {
+                let bullet = this.Group.getFirst(true);
+                bullet.x = 480;
+                bullet.y =  192;
+                bullet._rotation = -45;
+                bullet.body.velocity.x = -1200;
+                bullet.body.velocity.y = -600;
+                this.bulletTime = time + 250;
             }
         }
     

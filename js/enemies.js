@@ -40,6 +40,7 @@
             
             this.enemies.children.entries[i] = this._scene.physics.add.sprite( this.config[i].spritex, this.config[i].spritey, this.config[i].id);
             this.enemies.children.entries[i].config = addConfig;
+            this.enemies.children.entries[i].ignoreDestroy = true;
         }
 
         Phaser.Actions.SetXY(this.enemies.getChildren(), 0, -96, 0, -64);
@@ -61,6 +62,8 @@
                 {config,x,y}
             );
         });
+
+        this._scene.physics.collide(this.enemies, this._scene.Bullet.Group, this.enemyHit, this.processHit, this);
 
         this.enemies.children.entries.forEach(enemy => {
             
@@ -120,6 +123,15 @@
 
     dodge(enemy) {
         enemy.y = enemy.y + 32;
+    }
+
+    enemyHit(enemy) {
+        enemy.active = false;
+        enemy.visible = false;
+    }
+
+    processHit(enemy) {
+            
     }
 
 }

@@ -34,16 +34,16 @@ export default class Level extends Phaser.Scene {
 
         if (this.Keyboard.Cursors.left.isDown)
         {
-            this.Bullet.fireBullet(this.time.now);
+            this.Bullet.fireBulletLeft(this.time.now);
         }
         else if (this.Keyboard.Cursors.right.isDown)
         {
-            this.Bullet.fireBullet(this.time.now);
+            this.Bullet.fireBulletRight(this.time.now);
         }
         
         if (this.Keyboard.FireButton.isDown)
         {
-            this.Bullet.fireBullet(this.time.now);
+            //this.Bullet.fireBullet(this.time.now);
         }
 
     }
