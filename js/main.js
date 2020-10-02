@@ -2,10 +2,9 @@ import Loader from './loader.js';
 import Level from './level.js';
 
 const config = {
-        type: Phaser.CANVAS,
+        type: Phaser.AUTO,
         scale: {
             parent: 'stage',
-            mode: Phaser.Scale.FIT,
             width: 512,
             height: 256
         },
