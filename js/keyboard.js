@@ -1,4 +1,4 @@
-﻿export default class Keybpoard {
+﻿export default class Keyboard {
     _scene;
     static Cursors;
     static FireButton;

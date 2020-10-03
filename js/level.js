@@ -1,27 +1,31 @@
 ﻿import Animation from './animation.js';
 import Bullet from './bullet.js';
-import Player from './player.js';
 import Enemies from './enemies.js';
 import Keyboard from './keyboard.js';
+import Player from './player.js';
+
 export default class Level extends Phaser.Scene {
     
     static Animation;
-    static Player;
     static Bullets;
-    static Keyboard;
     static Console;
+    static Enemies;
+    static Keyboard;
+    static Player;
     
     constructor() {
         super({
             key: "Level"
         });
 
+        this.Keyboard = new Keyboard(this);
+
         this.Enemies = new Enemies(this);
         this.Bullet = new Bullet(this);
         this.Player = new Player(this);
         this.Enemies = new Enemies(this);
         this.Animation = new Animation(this);
-        this.Keyboard = new Keyboard(this);
+        
 
     }
 

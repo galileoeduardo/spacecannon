@@ -1,7 +1,7 @@
 ﻿export default class Bullets {
 
     static Group;
-    static bulletTime = 0;
+    bulletTime = 0;
     
     constructor(scene) {
         this._scene = scene;
@@ -19,10 +19,8 @@
     
     fireBulletLeft(time) {
 
-        if (time > this.bulletTime)
-        {
-            if (!!this.Group)
-            {
+        if (time > this.bulletTime) {
+            if (!!this.Group)   {
                 let bullet = this.Group.getFirst(true);
                 bullet.x = 32;
                 bullet.y =  192;
@@ -37,10 +35,8 @@
 
     fireBulletRight(time) {
 
-        if (time > this.bulletTime)
-        {
-            if (!!this.Group)
-            {
+        if (time > this.bulletTime) {
+            if (!!this.Group)   {
                 let bullet = this.Group.getFirst(true);
                 bullet.x = 480;
                 bullet.y =  192;
