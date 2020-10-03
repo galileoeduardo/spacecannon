@@ -1,6 +1,6 @@
 ﻿export default class Enemies {
 
-    static timedEnemyLaunchEvent;
+    timedEnemyLaunchEvent;
     enemies = new Array();
 
     enemies_actual_position = new Array();
@@ -30,17 +30,10 @@
 
             this.enemies[i] = this._scene.physics.add.sprite(0,0,this.config[i].id,this.config[i].frame);
             this.enemies[i].config = addConfig;
+            
         }
 
         Phaser.Actions.SetXY(this.enemies, 0, -96, 0, -64);
-
-        this.timedEnemyLaunchEvent = this._scene.time.addEvent({
-            delay: 5000,
-            callback: this.launch,
-            callbackScope: this,
-            repeat: this.config.length - 1,
-            startAt: 5000 
-        });
 
     }
 
@@ -86,11 +79,9 @@
         return Phaser.Math.Between(0, 1);
     }
 
-    launch() {
-        
+    launch = () => {
         const enemy = this.enemies[this.enemies_launch.next];
         this.enemies_launch.next++;
-
         if (enemy.config.start_on == 'left') {
             enemy.body.velocity.x = enemy.config.force * this.speed;
             enemy.flipX = true;
@@ -102,6 +93,8 @@
         enemy.config.on_base = false;
         enemy.x = enemy.config.start_x;
         enemy.y = enemy.config.start_y;
+
+        if(this.enemies_launch.next >= this.enemies_launch.total) clearInterval(this.timedEnemyLaunchEvent); //stop launch
 
     }
 

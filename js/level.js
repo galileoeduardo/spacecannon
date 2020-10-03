@@ -24,7 +24,10 @@ export default class Level extends Phaser.Scene {
         this.Enemies = new Enemies(this);
         this.Bullet = new Bullet(this);
         this.Player = new Player(this);
+
         this.Enemies = new Enemies(this);
+        this.Enemies.timedEnemyLaunchEvent = setInterval(this.Enemies.launch, 5000);
+
         this.Animation = new Animation(this);
         this.Keyboard = new Keyboard(this);
 
