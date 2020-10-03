@@ -5,7 +5,10 @@
     
     constructor(scene) {
         this._scene = scene;
-        this.bulletTime = 0;
+
+    }
+
+    create() {
         this.Group = this._scene.physics.add.group({
             key: 'bullet',
             quantity: 4,

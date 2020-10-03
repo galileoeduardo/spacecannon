@@ -15,22 +15,23 @@ export default class Level extends Phaser.Scene {
         super({
             key: "Level"
         });
+
+        this.Enemies = new Enemies(this);
+        this.Bullet = new Bullet(this);
+        this.Player = new Player(this);
+        this.Enemies = new Enemies(this);
+        this.Animation = new Animation(this);
+        this.Keyboard = new Keyboard(this);
+
     }
 
     preload() {}
 
     create() {
         this.add.image(0,0,'bg_level01').setOrigin(0,0);
-        this.Enemies = new Enemies(this);
-        this.Bullet = new Bullet(this);
-        this.Player = new Player(this);
-
-        this.Enemies = new Enemies(this);
-        this.Enemies.timedEnemyLaunchEvent = setInterval(this.Enemies.launch, 5000);
-
-        this.Animation = new Animation(this);
-        this.Keyboard = new Keyboard(this);
-
+        this.Enemies.create();
+        this.Bullet.create();
+        this.Keyboard.create();
         this.Console = this.add.text(10, 10, 'Console', { font: '"Press Start 2P"' });
     }
 

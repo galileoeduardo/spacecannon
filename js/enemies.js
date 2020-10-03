@@ -15,8 +15,10 @@
     enemies_launch = { next: 0, total: this.config.length};
 
     constructor(scene) {
-
         this._scene = scene;
+    }
+
+    create() {
 
         for (let i = 0; i < this.config.length; i++) {
             
@@ -34,7 +36,7 @@
         }
 
         Phaser.Actions.SetXY(this.enemies, 0, -96, 0, -64);
-
+        this.timedEnemyLaunchEvent = setInterval(this.launch, 5000);
     }
 
     update() {

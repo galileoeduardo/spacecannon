@@ -1,9 +1,12 @@
 ﻿export default class Animation {
 
     static _scene;
+
     constructor(scene) {
         this._scene = scene;
+    }
 
+    create() {
         this._scene.anims.create({
             key: 'loop',
             frameRate: 12,
@@ -18,8 +21,5 @@
             repeat: 0,
             hideOnComplete: true
         });
-
-        
-
     }
 }
