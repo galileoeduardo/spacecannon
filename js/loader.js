@@ -55,7 +55,7 @@
                 frameWidth: 2,
                 frameHeight: 4,
                 startFrame: 0,
-                endFrame: 0
+                endFrame: 1
             }
         });
         

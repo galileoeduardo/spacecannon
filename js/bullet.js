@@ -1,51 +1,20 @@
-﻿export default class Bullets {
-
-    static Group;
-    bulletTime = 0;
+﻿export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     
-    constructor(scene) {
-        this._scene = scene;
-
+    constructor(scene,x,y) {
+        super(scene,x,y,'bullet');
     }
 
-    create() {
-        this.Group = this._scene.physics.add.group({
-            key: 'bullet',
-            quantity: 4,
-            collideWorldBounds: false,
-            outOfBoundsKill: true
-        });
-    }
-    
-    fireBulletLeft(time) {
+    fire(x,y,rotation,vx,vy) {
+        this.body.reset(x,y);
+        
+        this.setActive(true);
+        this.setVisible(true);
 
-        if (time > this.bulletTime) {
-            if (!!this.Group)   {
-                let bullet = this.Group.getFirst(true);
-                bullet.x = 32;
-                bullet.y =  192;
-                bullet._rotation = 45;
-                bullet.body.velocity.x = 1200;
-                bullet.body.velocity.y = -600;
-                this.bulletTime = time + 250;
-            }
-        }
-    
+        this.x = x;
+        this.y =  y;
+        this._rotation = rotation;
+        this.body.velocity.x = vx;
+        this.body.velocity.y = vy;
     }
 
-    fireBulletRight(time) {
-
-        if (time > this.bulletTime) {
-            if (!!this.Group)   {
-                let bullet = this.Group.getFirst(true);
-                bullet.x = 480;
-                bullet.y =  192;
-                bullet._rotation = -45;
-                bullet.body.velocity.x = -1200;
-                bullet.body.velocity.y = -600;
-                this.bulletTime = time + 250;
-            }
-        }
-    
-    }
 }

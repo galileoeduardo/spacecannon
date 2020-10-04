@@ -1,7 +1,6 @@
 ﻿export default class Enemies {
 
     timedEnemyLaunchEvent;
-    enemies = new Array();
 
     enemies_actual_position = new Array();
     speed = 50;
@@ -39,7 +38,7 @@
 
         const enemies = this._scene.children.getAll( "name" , "enemies_ship");
         
-        this._scene.physics.collide(enemies, this._scene.Bullet.Group, this.enemyHit, this.processHit, this);
+        this._scene.physics.collide(enemies, this._scene.BulletGroup.children.entries, this.enemyHit, this.processHit, this);
         
         let same_level;
         
@@ -92,6 +91,23 @@
         enemy.x = enemy.getData("start_x");
         enemy.y = enemy.getData("start_y");
 
+        this._scene.anims.create({
+            key: enemy.getData('id') + 'loop',
+            frameRate: 12,
+            frames: this._scene.anims.generateFrameNumbers(enemy.getData('id'), { start: 0, end: 1}),
+            repeat: -1
+        });
+
+        this._scene.anims.create({
+            key: enemy.getData('id') + 'hit',
+            frameRate: 12,
+            frames: this._scene.anims.generateFrameNumbers(enemy.getData('id'), { start: 2, end: 8}),
+            repeat: 0,
+            hideOnComplete: true
+        });
+        
+        enemy.play(enemy.getData('id') + 'loop');
+        
         if(this.config.length <= 0) clearInterval(this.timedEnemyLaunchEvent); //stop launch
 
     }
