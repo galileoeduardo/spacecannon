@@ -101,12 +101,14 @@
         this._scene.anims.create({
             key: enemy.getData('id') + 'hit',
             frameRate: 12,
-            frames: this._scene.anims.generateFrameNumbers(enemy.getData('id'), { start: 2, end: 8}),
+            frames: this._scene.anims.generateFrameNumbers(enemy.getData('id'), { start: 2, end: 4}),
             repeat: 0,
             hideOnComplete: true
         });
         
         enemy.play(enemy.getData('id') + 'loop');
+
+        enemy.on('animationcomplete', this.animationCompleteHit, this);
         
         if(this.config.length <= 0) clearInterval(this.timedEnemyLaunchEvent); //stop launch
 
@@ -118,11 +120,23 @@
     }
 
     dodge(enemy) {
+        
         enemy.y = enemy.y + 32;
     }
 
     enemyHit(enemy) {
-        this._scene.children.remove(enemy);
+        enemy.setVelocityX(0);
+        enemy.setVelocityY(0);
+        
+        enemy.play(enemy.getData("id") + "hit");
+    }
+
+    animationCompleteHit(animation,frame,enemy) {
+        if(animation.key === enemy.getData("id") + "hit") {
+            console.log(animation.key);
+            enemy.setActive(false);
+            this._scene.children.remove(enemy);    
+        }
     }
 
     processHit(enemy) {
