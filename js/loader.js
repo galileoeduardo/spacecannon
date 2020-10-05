@@ -21,7 +21,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 8
+                endFrame: 4
             }
         );
 
@@ -32,7 +32,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 8
+                endFrame: 4
             }
         );
 
@@ -43,7 +43,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 8
+                endFrame: 4
             }
         );
 
@@ -55,7 +55,7 @@
                 frameWidth: 2,
                 frameHeight: 4,
                 startFrame: 0,
-                endFrame: 1
+                endFrame: 5
             }
         });
         

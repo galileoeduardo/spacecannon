@@ -6,8 +6,15 @@
     speed = 50;
 
     config = [ 
-        { id:"enemy01", frame: 0, force: 3.2 },
+        { id:"enemy01", frame: 0, force: 3.8 },
+        { id:"enemy01", frame: 0, force: 3.6 },
+        { id:"enemy01", frame: 0, force: 3.4 },
         { id:"enemy02", frame: 0, force: 3.6 },
+        { id:"enemy02", frame: 0, force: 3.2 },
+        { id:"enemy02", frame: 0, force: 3.1 },
+        { id:"enemy02", frame: 0, force: 3.0 },
+        { id:"enemy03", frame: 0, force: 5 },
+        { id:"enemy03", frame: 0, force: 6 },
         { id:"enemy03", frame: 0, force: 8 }
     ];
 
@@ -124,19 +131,24 @@
         enemy.y = enemy.y + 32;
     }
 
-    enemyHit(enemy) {
+    enemyHit(enemy,bullet) {
+
+        bullet.setActive(false);
+        bullet.setVisible(false);
+
         enemy.setVelocityX(0);
         enemy.setVelocityY(0);
-        
         enemy.play(enemy.getData("id") + "hit");
+
     }
 
     animationCompleteHit(animation,frame,enemy) {
+
         if(animation.key === enemy.getData("id") + "hit") {
-            console.log(animation.key);
             enemy.setActive(false);
             this._scene.children.remove(enemy);    
         }
+        
     }
 
     processHit(enemy) {
