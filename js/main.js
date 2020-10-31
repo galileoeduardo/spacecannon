@@ -3,6 +3,7 @@ import Level from './level.js';
 
 const config = {
         type: Phaser.AUTO,
+        disableContextMenu: true,
         scale: {
             parent: 'stage',
             width: 512,

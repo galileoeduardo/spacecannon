@@ -24,8 +24,8 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
             let bullet = this.getFirstDead(true);
 
             if (bullet) {
-                bullet.fire(32,192,45,500,-200);
-                this.bulletTime = time + 850;
+                bullet.fire(16,192,45,500,-500);
+                this.bulletTime = time + 700;
             }
             
         }
@@ -39,8 +39,8 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
             let bullet = this.getFirstDead(true);
             
             if (bullet) {
-                bullet.fire(480,192,-45,-500,-200);
-                this.bulletTime = time + 850;
+                bullet.fire(496,192,-45,-500,-500);
+                this.bulletTime = time + 700;
             }
 
         }

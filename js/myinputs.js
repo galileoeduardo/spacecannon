@@ -1,7 +1,7 @@
-﻿export default class Keyboard {
+﻿export default class MyInputs {
     _scene;
     static Cursors;
-    static FireButton;
+    static Pointer;
 
     constructor(scene) {
         this._scene = scene;
@@ -10,7 +10,7 @@
 
     create() {
         this.Cursors = this._scene.input.keyboard.createCursorKeys();
-        this.FireButton = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.Pointer = this._scene.input.addPointer(3);
     }
  
 }

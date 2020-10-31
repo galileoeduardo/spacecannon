@@ -9,6 +9,7 @@
         
         this.setActive(true);
         this.setVisible(true);
+        this.depth = 9999;
 
         this.x = x;
         this.y =  y;

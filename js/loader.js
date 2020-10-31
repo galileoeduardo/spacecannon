@@ -11,12 +11,51 @@
             this.scene.start('Level');
         });
 
-        this.load.setBaseURL('/assets/sprites/');
-        this.load.image('bg_level01', 'bg_stage_512x256_star.jpg');
+        this.load.setBaseURL('/assets/');
+
+        this.load.image('bg_stars', 'sprites/stars_paralax.png');
+        
+        this.load.image('bg_level01', 'sprites/base_bg.png');
+        this.load.image('fg_level01', 'sprites/base_fg.png');
+
+        this.load.bitmapFont('sunset', 'fonts/bitmap/atari-sunset.png', 'fonts/bitmap/atari-sunset.xml');
+
+        this.load.spritesheet(
+            'cannon_left',
+            'sprites/cannon_left.png',
+            {
+                frameWidth: 41,
+                frameHeight: 41,
+                startFrame: 0,
+                endFrame: 0
+            }
+        );
+
+        this.load.spritesheet(
+            'cannon_right',
+            'sprites/cannon_right.png',
+            {
+                frameWidth: 41,
+                frameHeight: 41,
+                startFrame: 0,
+                endFrame: 0
+            }
+        );
+
+        this.load.spritesheet(
+            'cannon_center',
+            'sprites/cannon_center.png',
+            {
+                frameWidth: 126,
+                frameHeight: 80,
+                startFrame: 0,
+                endFrame: 0
+            }
+        );
         
         this.load.spritesheet(
             'enemy01',
-            'enemy_ship_1.png',
+            'sprites/enemy_ship_1.png',
             {
                 frameWidth: 32,
                 frameHeight: 32,
@@ -27,7 +66,7 @@
 
         this.load.spritesheet(
             'enemy02',
-            'enemy_ship_2.png',
+            'sprites/enemy_ship_2.png',
             {
                 frameWidth: 32,
                 frameHeight: 32,
@@ -38,7 +77,7 @@
 
         this.load.spritesheet(
             'enemy03',
-            'enemy_ship_3.png',
+            'sprites/enemy_ship_3.png',
             {
                 frameWidth: 32,
                 frameHeight: 32,
@@ -50,7 +89,7 @@
        
         this.load.spritesheet({
             key: 'bullet',
-            url: 'fire_bullet.png',
+            url: 'sprites/fire_bullet.png',
             frameConfig: {
                 frameWidth: 2,
                 frameHeight: 4,
@@ -61,7 +100,11 @@
         
     }
 
-    create() {}
+    create() {
+
+        
+
+    }
     update() {}
 
 }
