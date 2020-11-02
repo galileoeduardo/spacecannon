@@ -4,18 +4,19 @@
         super(scene,x,y,'bullet');
     }
 
-    fire(x,y,rotation,vx,vy) {
-        this.body.reset(x,y);
+    fire(config) {
+        
+        this.body.reset(config.x,config.y);
         
         this.setActive(true);
         this.setVisible(true);
         this.depth = 9999;
 
-        this.x = x;
-        this.y =  y;
-        this._rotation = rotation;
-        this.body.velocity.x = vx;
-        this.body.velocity.y = vy;
+        this.x = config.x;
+        this.y =  config.y;
+        this._rotation = config.rotation;
+        this.body.velocity.x = config.vx;
+        this.body.velocity.y = config.vy;
     }
 
 }

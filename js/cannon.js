@@ -1,6 +1,7 @@
 ﻿export default class Cannon {
 
     pointer;
+    cannon_left_rotation = 0;
 
     constructor(scene) {
         this._scene = scene;
@@ -14,7 +15,7 @@
         const text = this._scene.add.text(10, 10, 'Move the mouse', { font: '16px Courier', fill: '#00ff00' });
         
         cannon_left.on('pointerdown', function (event) {
-            this.BulletGroup.fireBulletLeft(this.time.now);
+            this.BulletGroup.fireBulletLeft(this.time.now,this.Cannon.cannon_left_rotation);
             this.pointer = this.input.activePointer;
         },this._scene);
 
@@ -28,14 +29,6 @@
                     this.Cannon.setAngle(direction);
                     event.downTime = 0;
                 }
-                
-                const d = { 
-                    downTime: event.downTime,
-                    distance: distance,
-                    pointerAngle: event.angle * Phaser.Math.RAD_TO_DEG
-                };
-
-                this.Text.setText(JSON.stringify(d,null,2));
 
             }
         },this._scene);
@@ -64,7 +57,8 @@
             if (cannon[0].rotation < .25) cannon[0].rotation = cannon[0].rotation + .25;
         }
 
-        console.log(cannon[0].rotation);
+        this.cannon_left_rotation = cannon[0].rotation;
+
     }
 
 }
