@@ -91,7 +91,7 @@
             key: 'bullet',
             url: 'sprites/fire_bullet.png',
             frameConfig: {
-                frameWidth: 2,
+                frameWidth: 4,
                 frameHeight: 4,
                 startFrame: 0,
                 endFrame: 5

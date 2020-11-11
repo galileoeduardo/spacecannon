@@ -17,11 +17,19 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
 
     }
 
-    fireBulletLeft(time,angle) {
+    fireBulletLeft(time,cannon,angle) {
+
         const config = {
-            "-0.25" : {x:30, y:166, rotation:-175, vx:350, vy:-600},
-            "0"     : {x:40, y:170, rotation:  45, vx:500, vy:-500},
-            "0.25"  : {x:50, y:174, rotation:  45, vx:650, vy:-400}
+            left: {
+                "-0.25" : {x:35, y:160, rotation: 45, vx:250, vy:-400},
+                "0"     : {x:40, y:170, rotation: 45, vx:400, vy:-400},
+                "0.25"  : {x:50, y:175, rotation: 45, vx:550, vy:-400}
+            },
+            right: {
+                "-0.25" : {x:458, y:170, rotation: 15, vx:-550, vy:-400},
+                "0"     : {x:468, y:165, rotation: 15, vx:-400, vy:-400},
+                "0.25"  : {x:478, y:160, rotation: 15, vx:-250, vy:-400}
+            }
         };
 
         if (time > this.bulletTime) {
@@ -29,7 +37,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
             let bullet = this.getFirstDead(true);
 
             if (bullet) {
-                bullet.fire(config[angle]);
+                bullet.fire(config[cannon][angle]);
                 this.bulletTime = time + 700;
             }
             
