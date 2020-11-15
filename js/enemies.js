@@ -105,18 +105,8 @@
             repeat: -1
         });
 
-        this._scene.anims.create({
-            key: enemy.getData('id') + 'hit',
-            frameRate: 12,
-            frames: this._scene.anims.generateFrameNumbers(enemy.getData('id'), { start: 2, end: 4}),
-            repeat: 0,
-            hideOnComplete: true
-        });
-        
         enemy.play(enemy.getData('id') + 'loop');
 
-        enemy.on('animationcomplete', this.animationCompleteHit, this);
-        
         if(this.config.length <= 0) clearInterval(this.timedEnemyLaunchEvent); //stop launch
 
     }
@@ -132,23 +122,35 @@
     }
 
     enemyHit(enemy,bullet) {
+       
+        const particles = this._scene.add.particles('explosion');
+
+        particles.createEmitter({
+            alpha: { start: 1, end: 0 },
+            scale: { start: 0.5, end: 2.5 },
+            tint: { start: 0x6666ff, end: 0x6666ff },
+            speed: 20,
+            accelerationY: 0,
+            angle: { min: -180, max: 180 },
+            rotate: { min: -180, max: 180 },
+            lifespan: { min: 1000, max: 1100 },
+            blendMode: 'ADD',
+            frequency: 110,
+            maxParticles: 5,
+            x: enemy.x,
+            y: enemy.y
+        });
 
         bullet.setActive(false);
         bullet.setVisible(false);
 
         enemy.setVelocityX(0);
         enemy.setVelocityY(0);
-        enemy.play(enemy.getData("id") + "hit");
+        enemy.setActive(false);
 
-    }
+        console.log(enemy,particles);
+        this._scene.children.remove(enemy);
 
-    animationCompleteHit(animation,frame,enemy) {
-
-        if(animation.key === enemy.getData("id") + "hit") {
-            enemy.setActive(false);
-            this._scene.children.remove(enemy);    
-        }
-        
     }
 
     processHit(enemy) {

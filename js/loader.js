@@ -17,6 +17,7 @@
         
         this.load.image('bg_level01', 'sprites/base_bg.png');
         this.load.image('fg_level01', 'sprites/base_fg.png');
+        this.load.image('explosion', 'sprites/explosion.png');
 
         this.load.bitmapFont('sunset', 'fonts/bitmap/atari-sunset.png', 'fonts/bitmap/atari-sunset.xml');
 
@@ -60,7 +61,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 4
+                endFrame: 1
             }
         );
 
@@ -71,7 +72,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 4
+                endFrame: 1
             }
         );
 
@@ -82,7 +83,7 @@
                 frameWidth: 32,
                 frameHeight: 32,
                 startFrame: 0,
-                endFrame: 4
+                endFrame: 1
             }
         );
 
