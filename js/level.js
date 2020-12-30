@@ -1,4 +1,5 @@
 ﻿import Animation from './animation.js';
+import PowerUp from './powerup.js';
 import BulletGroup from './bulletGroup.js';
 import Cannon from './cannon.js';
 import Enemies from './enemies.js';
@@ -8,6 +9,7 @@ import Player from './player.js';
 export default class Level extends Phaser.Scene {
     
     static Animation;
+    static PowerUp;
     static BulletGroup;
     static Console;
     static Text;
@@ -21,7 +23,12 @@ export default class Level extends Phaser.Scene {
             key: "Level"
         });
 
+        
+        this.PowerUp = new PowerUp(this);
         this.Cannon = new Cannon(this);
+
+        this.Animation = new Animation(this);
+
         this.MyInputs = new MyInputs(this);
         this.Player = new Player(this);
 
@@ -44,13 +51,17 @@ export default class Level extends Phaser.Scene {
         this.Text = this.add.text(10, 20, '', { font: '10px Courier', fill: '#00ff00' });
 
         this.add.image(0,200,'bg_level01').setOrigin(0,0);
+        this.add.image(400,50,'bg_planet').setOrigin(0,0);
         this.add.image(0,208,'fg_level01').setOrigin(0,0);
 
         this.Cannon.create();
+
+        this.add.image(192,222,'generator').setOrigin(0,0);
         
-
-
+        this.PowerUp.create();
         this.Enemies.create();
+
+        this.Animation.create();
         this.MyInputs.create();
         
     }

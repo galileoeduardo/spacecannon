@@ -3,7 +3,8 @@
     pointer;
     cannon_rotation = { 
         cannon_left: 0,
-        cannon_right:0
+        cannon_right:0,
+        cannon_center:0
     };
 
     constructor(scene) {
@@ -17,7 +18,7 @@
         cannon_left.name = "cannon_left";
         
         cannon_left.on('pointerdown', function (event) {
-            this.BulletGroup.fireBulletLeft(this.time.now,'left',this.Cannon.cannon_rotation["cannon_left"]);
+            this.BulletGroup.fireBullet(this.time.now,'left',this.Cannon.cannon_rotation["cannon_left"]);
             this.pointer = this.input.activePointer;
         },this._scene);
 
@@ -41,12 +42,12 @@
         },this._scene);
 
         //cannon right
-        const text = this._scene.add.text(10, 10, 'Move the mouse', { font: '16px Courier', fill: '#00ff00' });
+        
         const cannon_right = this._scene.add.sprite(498,196,'cannon_right').setOrigin(0.7,0.7).setInteractive();
         cannon_right.name = "cannon_right";
 
         cannon_right.on('pointerdown', function (event) {
-            this.BulletGroup.fireBulletLeft(this.time.now,'right',this.Cannon.cannon_rotation["cannon_right"]);
+            this.BulletGroup.fireBullet(this.time.now,'right',this.Cannon.cannon_rotation["cannon_right"]);
             this.pointer = this.input.activePointer;
         },this._scene);
 
@@ -69,8 +70,15 @@
            
         },this._scene);
 
+        //cannon center
+        const cannon_center = this._scene.add.sprite(192,160,'cannon_center').setOrigin(0,0).setInteractive();
+        cannon_center.name = "cannon_center";
 
-        this._scene.add.sprite(192,160,'cannon_center').setOrigin(0,0);
+        cannon_center.on('pointerdown', function (event) {
+            this.BulletGroup.fireBullet(this.time.now,'center',this.Cannon.cannon_rotation["cannon_center"]);
+            this.pointer = this.input.activePointer;
+        },this._scene);
+
     }
 
     update() {

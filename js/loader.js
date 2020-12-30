@@ -14,10 +14,12 @@
         this.load.setBaseURL('/assets/');
 
         this.load.image('bg_stars', 'sprites/stars_paralax.png');
+        this.load.image('bg_planet', 'sprites/planeta01.png');
         
         this.load.image('bg_level01', 'sprites/base_bg.png');
         this.load.image('fg_level01', 'sprites/base_fg.png');
         this.load.image('explosion', 'sprites/explosion.png');
+        this.load.image('generator', 'sprites/generator.png');
 
         this.load.bitmapFont('sunset', 'fonts/bitmap/atari-sunset.png', 'fonts/bitmap/atari-sunset.xml');
 
@@ -89,13 +91,35 @@
 
        
         this.load.spritesheet({
-            key: 'bullet',
-            url: 'sprites/fire_bullet.png',
+            key: 'bullet_1',
+            url: 'sprites/fire_bullet_1.png',
             frameConfig: {
                 frameWidth: 4,
                 frameHeight: 4,
                 startFrame: 0,
                 endFrame: 5
+            }
+        });
+
+        this.load.spritesheet({
+            key: 'bullet_2',
+            url: 'sprites/fire_bullet_2.png',
+            frameConfig: {
+                frameWidth: 4,
+                frameHeight: 4,
+                startFrame: 0,
+                endFrame: 5
+            }
+        });
+
+        this.load.spritesheet({
+            key: 'powerup_2',
+            url: 'sprites/powerup_2.png',
+            frameConfig: {
+                frameWidth: 22,
+                frameHeight: 8,
+                startFrame: 0,
+                endFrame: 0
             }
         });
         

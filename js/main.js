@@ -4,6 +4,7 @@ import Level from './level.js';
 const config = {
         type: Phaser.AUTO,
         disableContextMenu: true,
+        pixelArt: true,
         scale: {
             parent: 'stage',
             width: 512,

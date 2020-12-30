@@ -6,16 +6,16 @@
     speed = 50;
 
     config = [ 
-        { id:"enemy01", frame: 0, force: 3.8 },
-        { id:"enemy01", frame: 0, force: 3.6 },
-        { id:"enemy01", frame: 0, force: 3.4 },
-        { id:"enemy02", frame: 0, force: 3.6 },
-        { id:"enemy02", frame: 0, force: 3.2 },
-        { id:"enemy02", frame: 0, force: 3.1 },
-        { id:"enemy02", frame: 0, force: 3.0 },
-        { id:"enemy03", frame: 0, force: 5 },
-        { id:"enemy03", frame: 0, force: 6 },
-        { id:"enemy03", frame: 0, force: 8 }
+        { id:"enemy01", scale: 1, force: 3.8 },
+        { id:"enemy01", scale: 1, force: 3.6 },
+        { id:"enemy01", scale: 1, force: 3.4 },
+        { id:"enemy02", scale: 1, force: 3.6 },
+        { id:"enemy02", scale: 1, force: 3.2 },
+        { id:"enemy02", scale: 1, force: 3.1 },
+        { id:"enemy02", scale: 1, force: 3.0 },
+        { id:"enemy03", scale: 1, force: 5 },
+        { id:"enemy03", scale: 1, force: 6 },
+        { id:"enemy03", scale: 1, force: 8 }
     ];
 
     enemies_launch = { next: 0, total: this.config.length};
@@ -83,8 +83,9 @@
 
     launch = () => {
 
-        const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,this.config[0].frame);
+        const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
+        enemy.setScale();
         enemy.setData(this.config.shift());
 
         if (enemy.getData("start_on") == 'left') {
@@ -141,6 +142,8 @@
             y: enemy.y
         });
 
+        bullet.x = -32;
+        bullet.y = -32;
         bullet.setActive(false);
         bullet.setVisible(false);
 
@@ -148,7 +151,6 @@
         enemy.setVelocityY(0);
         enemy.setActive(false);
 
-        console.log(enemy,particles);
         this._scene.children.remove(enemy);
 
     }
