@@ -5,7 +5,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
     bulletTime = 0;
     powerUp = {
         left: 0,
-        center: 1,
+        center: 0, //1: 3 shoot
         right:0
     };
     
@@ -31,9 +31,9 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
                 "0.25"  : {x:50, y:175, rotation: 45, vx:550, vy:-400}
             },
             center: {
-                "0"     : {x:257, y:160, rotation: 45, vx: 0, vy:-400},
-                "1"     : {x:257, y:160, rotation: 45, vx: -150, vy:-400},
-                "2"     : {x:257, y:160, rotation: 45, vx: 150, vy:-400}
+                "0"     : {x:257, y:192, rotation: 45, vx: 0, vy:-400},
+                "1"     : {x:257, y:192, rotation: 45, vx: -150, vy:-400},
+                "2"     : {x:257, y:192, rotation: 45, vx: 150, vy:-400}
             },
             right: {
                 "-0.25" : {x:458, y:170, rotation: 15, vx:-550, vy:-400},

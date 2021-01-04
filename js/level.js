@@ -52,12 +52,9 @@ export default class Level extends Phaser.Scene {
 
         this.add.image(0,200,'bg_level01').setOrigin(0,0);
         this.add.image(400,50,'bg_planet').setOrigin(0,0);
-        this.add.image(0,208,'fg_level01').setOrigin(0,0);
 
         this.Cannon.create();
 
-        this.add.image(192,222,'generator').setOrigin(0,0);
-        
         this.PowerUp.create();
         this.Enemies.create();
 
@@ -70,15 +67,10 @@ export default class Level extends Phaser.Scene {
         this.Cannon.update();
         this.Enemies.update();
         
-        //this.Player.gameObject.body.velocity.x = 0;
-
-        if (this.MyInputs.Cursors.left.isDown)
-        {
-            
-        }
-        else if (this.MyInputs.Cursors.right.isDown)
-        {
-            this.BulletGroup.fireBulletRight(this.time.now);
+        if (this.MyInputs.Cursors.left.isDown) {
+            //this.BulletGroup.fireBulletLeft(this.time.now);
+        } else if (this.MyInputs.Cursors.right.isDown) {
+            //this.BulletGroup.fireBulletRight(this.time.now);
         }
 
     }

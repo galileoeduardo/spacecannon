@@ -17,7 +17,7 @@
         this.load.image('bg_planet', 'sprites/planeta01.png');
         
         this.load.image('bg_level01', 'sprites/base_bg.png');
-        this.load.image('fg_level01', 'sprites/base_fg.png');
+
         this.load.image('explosion', 'sprites/explosion.png');
         this.load.image('generator', 'sprites/generator.png');
 
@@ -119,7 +119,7 @@
                 frameWidth: 22,
                 frameHeight: 8,
                 startFrame: 0,
-                endFrame: 0
+                endFrame: 1
             }
         });
         

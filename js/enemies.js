@@ -128,15 +128,16 @@
 
         particles.createEmitter({
             alpha: { start: 1, end: 0 },
-            scale: { start: 0.5, end: 2.5 },
+            scale: { start: 0.5, end: 2.0 },
             tint: { start: 0x6666ff, end: 0x6666ff },
             speed: 20,
             accelerationY: 0,
-            angle: { min: -180, max: 180 },
-            rotate: { min: -180, max: 180 },
-            lifespan: { min: 1000, max: 1100 },
+            accelerationX: 0,
+            angle: { min: -360, max: 360 },
+            rotate: { min: -360, max: 360 },
+            lifespan: { min: 750, max: 800 },
             blendMode: 'ADD',
-            frequency: 110,
+            frequency: 0,
             maxParticles: 5,
             x: enemy.x,
             y: enemy.y

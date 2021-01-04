@@ -71,7 +71,7 @@
         },this._scene);
 
         //cannon center
-        const cannon_center = this._scene.add.sprite(192,160,'cannon_center').setOrigin(0,0).setInteractive();
+        const cannon_center = this._scene.add.sprite(224,177,'cannon_center').setOrigin(0,0).setInteractive();
         cannon_center.name = "cannon_center";
 
         cannon_center.on('pointerdown', function (event) {

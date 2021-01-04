@@ -8,6 +8,9 @@ export default class PowerUp {
         let el = this._scene.add.sprite(256,16,'powerup_2').setOrigin(0.5,-10);
         el.name = "powerup_2";
         el.angle = 90;
+        el.setActive(false);
+        el.setVisible(false);
+
     }
 
     launchPowerUp(number = 0) {
