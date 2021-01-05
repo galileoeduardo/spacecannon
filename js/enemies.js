@@ -26,7 +26,7 @@
             
             let addConfig = this.config[i];
             
-            addConfig = {...addConfig, index: i, start_y: 48, on_base: true};
+            addConfig = {...addConfig, index: i, start_y: 36, on_base: true};
 
             addConfig = this.getBoolRandon() 
             ? { ...addConfig, start_on: 'right', start_x: 512 } 
@@ -85,7 +85,7 @@
 
         const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
-        enemy.setScale();
+        enemy.setScale(.25);
         enemy.setData(this.config.shift());
 
         if (enemy.getData("start_on") == 'left') {
@@ -114,7 +114,9 @@
 
     moveLower(enemy) {
         enemy.x = enemy.getData("start_x");
-        enemy.y += 32;
+        enemy.y += 16;
+        if (enemy.scale < 1) enemy.setScale(enemy.scale + .25);
+        
     }
 
     dodge(enemy) {
