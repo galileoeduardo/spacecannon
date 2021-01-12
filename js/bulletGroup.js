@@ -5,7 +5,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
     bulletTime = 0;
     powerUp = {
         left: 0,
-        center: 0, //1: 3 shoot
+        center: 0, //1: tree shoot
         right:0
     };
     

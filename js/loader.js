@@ -19,7 +19,10 @@
         this.load.image('bg_level01', 'sprites/base_bg.png');
 
         this.load.image('explosion', 'sprites/explosion.png');
-        this.load.image('generator', 'sprites/generator.png');
+        this.load.image('observatorio', 'sprites/observatorio.png');
+        this.load.image('celula', 'sprites/celula.png');
+        this.load.image('celula2', 'sprites/celula2.png');
+        this.load.image('antena', 'sprites/antena.png');
 
         this.load.bitmapFont('sunset', 'fonts/bitmap/atari-sunset.png', 'fonts/bitmap/atari-sunset.xml');
 

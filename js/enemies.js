@@ -13,9 +13,9 @@
         { id:"enemy02", scale: 1, force: 3.2 },
         { id:"enemy02", scale: 1, force: 3.1 },
         { id:"enemy02", scale: 1, force: 3.0 },
-        { id:"enemy03", scale: 1, force: 5 },
-        { id:"enemy03", scale: 1, force: 6 },
-        { id:"enemy03", scale: 1, force: 8 }
+        { id:"enemy03", scale: 1, force: 5.1 },
+        { id:"enemy03", scale: 1, force: 6.1 },
+        { id:"enemy03", scale: 1, force: 8.1 }
     ];
 
     enemies_launch = { next: 0, total: this.config.length};
@@ -55,17 +55,6 @@
                 same_level = (enemies[index].y == enemy.y && enemies[index].getData("id") != enemy.getData("id")) ? index : undefined;
             };
 
-            if (same_level != undefined) { //enemy in the same level
-                const distance = Phaser.Math.Distance.Between(
-                    enemy.x,
-                    enemy.y,
-                    enemies[same_level].x,
-                    enemies[same_level].y
-                );
-
-                if (distance < 64) this.dodge(enemies[same_level]);
-            }
-
             if(enemy.x < -64 || enemy.x > 512) { //fora da tela
                 
                 //move para faixa inferior
@@ -85,7 +74,6 @@
 
         const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
-        enemy.setScale(.25);
         enemy.setData(this.config.shift());
 
         if (enemy.getData("start_on") == 'left') {
@@ -115,13 +103,7 @@
     moveLower(enemy) {
         enemy.x = enemy.getData("start_x");
         enemy.y += 16;
-        if (enemy.scale < 1) enemy.setScale(enemy.scale + .25);
         
-    }
-
-    dodge(enemy) {
-        
-        enemy.y = enemy.y + 32;
     }
 
     enemyHit(enemy,bullet) {
