@@ -53,10 +53,16 @@ export default class Level extends Phaser.Scene {
         this.add.image(0,200,'bg_level01').setOrigin(0,0);
         this.add.image(400,50,'bg_planet').setOrigin(0,0);
 
-        this.add.image(70,210,'observatorio').setOrigin(0,0);
-        this.add.image(170,200,'celula').setOrigin(0,0);
-        this.add.image(310,200,'celula2').setOrigin(0,0);
+        this.add.image( 66,210,'celula_small').setOrigin(0,0);
+        this.add.image(86,210,'observatorio').setOrigin(0,0);
+
+        this.add.image(156,200,'celula').setOrigin(0,0);
+        this.add.image(194,216,'celula_small').setOrigin(0,0);
+
+        this.add.image(296,216,'gerador').setOrigin(0,0);
+        
         this.add.image(364,210,'antena').setOrigin(0,0);
+        this.add.image(432,210,'celula_small').setOrigin(0,0);
         
 
         this.Cannon.create();
