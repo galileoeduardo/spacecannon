@@ -26,7 +26,7 @@
             
             let addConfig = this.config[i];
             
-            addConfig = {...addConfig, index: i, start_y: 36, on_base: true};
+            addConfig = {...addConfig, index: i, start_y: 36, on_base: true, nivel: 0};
 
             addConfig = this.getBoolRandon() 
             ? { ...addConfig, start_on: 'right', start_x: 512 } 
@@ -101,8 +101,29 @@
     }
 
     moveLower(enemy) {
+
+        //if passed 5x destroy enemy
+        if (enemy.getData('nivel') >= 5) {
+            enemy.setActive(false);
+            this._scene.children.remove(enemy);
+            return;
+        }
+
+        //move lower
         enemy.x = enemy.getData("start_x");
-        enemy.y += 16;
+        enemy.y += 20;
+        enemy.data.values.nivel += 1;
+
+        //if passed by 5 shoot bomb
+        if (enemy.getData('nivel') == 1) {
+            setTimeout(() => {
+                const vx = (enemy.getData('start_on') == "left") ? 30 : -30;
+                this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 50});
+            }, 1500);
+            
+        }
+
+        console.log(enemy.getData('nivel'));
         
     }
 
@@ -137,6 +158,7 @@
         enemy.setActive(false);
 
         this._scene.children.remove(enemy);
+        this._scene.data.score += enemy.getData('force') * 10;
 
     }
 

@@ -56,7 +56,7 @@
                 frameWidth: 126,
                 frameHeight: 80,
                 startFrame: 0,
-                endFrame: 0
+                endFrame: 1
             }
         );
         
@@ -113,6 +113,17 @@
                 frameHeight: 4,
                 startFrame: 0,
                 endFrame: 5
+            }
+        });
+
+        this.load.spritesheet({
+            key: 'bomb',
+            url: 'sprites/bomb.png',
+            frameConfig: {
+                frameWidth: 8,
+                frameHeight: 8,
+                startFrame: 0,
+                endFrame: 1
             }
         });
 
