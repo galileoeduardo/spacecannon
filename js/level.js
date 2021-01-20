@@ -2,6 +2,7 @@
 import PowerUp from './powerup.js';
 import BulletGroup from './bulletGroup.js';
 import BombGroup from './bombGroup.js';
+import PlataformaGroup from './plataformaGroup.js';
 import Cannon from './cannon.js';
 import Enemies from './enemies.js';
 import MyInputs from './myinputs.js';
@@ -13,7 +14,7 @@ export default class Level extends Phaser.Scene {
     static PowerUp;
     static BulletGroup;
     static BombGroup;
-    static CannonGroup;
+    static PlataformaGroup;
     static TextScore;
     static Enemies;
     static Keyboard;
@@ -28,9 +29,7 @@ export default class Level extends Phaser.Scene {
         
         this.PowerUp = new PowerUp(this);
         this.Cannon = new Cannon(this);
-
         this.Animation = new Animation(this);
-
         this.MyInputs = new MyInputs(this);
         this.Player = new Player(this);
 
@@ -40,6 +39,8 @@ export default class Level extends Phaser.Scene {
 
     create() {
         this.data.score = 0;
+        this.data.live = 100;
+
         this.Enemies = new Enemies(this);
         this.BulletGroup = new BulletGroup(this);
         this.BombGroup = new BombGroup(this);
@@ -53,9 +54,13 @@ export default class Level extends Phaser.Scene {
         this.TextScore = this.add.bitmapText(256, 16, 'sunset', '', 16, 1).setOrigin(0.5).setCenterAlign();
         //this.Text = this.add.text(10, 20, '', { font: '10px Courier', fill: '#00ff00' });
 
-        this.add.image(0,200,'bg_level01').setOrigin(0,0);
+        
         this.add.image(400,50,'bg_planet').setOrigin(0,0);
 
+        //this.Text = this.add.text(10, 20, '', { font: '10px Courier', fill: '#00ff00' });
+        this.add.image(0,200,'plataforma01').setOrigin(0,0);
+        this.add.image(462,200,'plataforma02').setOrigin(0,0);
+        this.PlataformaGroup = new PlataformaGroup(this);
         
         
 
@@ -72,6 +77,8 @@ export default class Level extends Phaser.Scene {
     update() {
         this.Cannon.update();
         this.Enemies.update();
+        this.BombGroup.update();
+        
 
         this.TextScore.setText(this.data.score);
         

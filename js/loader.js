@@ -16,7 +16,12 @@
         this.load.image('bg_stars', 'sprites/stars_paralax.png');
         this.load.image('bg_planet', 'sprites/planeta01.png');
         
-        this.load.image('bg_level01', 'sprites/base_bg.png');
+        this.load.image('plataforma01', 'sprites/plataforma01.png');
+        this.load.image('plataforma02', 'sprites/plataforma02.png');
+
+        this.load.image('plataforma03', 'sprites/plataforma03.png');
+        this.load.image('plataforma04', 'sprites/plataforma04.png');
+        this.load.image('plataforma05', 'sprites/plataforma05.png');
 
         this.load.image('explosion', 'sprites/explosion.png');
         this.load.image('observatorio', 'sprites/observatorio.png');
@@ -123,7 +128,7 @@
                 frameWidth: 8,
                 frameHeight: 8,
                 startFrame: 0,
-                endFrame: 1
+                endFrame: 3
             }
         });
 

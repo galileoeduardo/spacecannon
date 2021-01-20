@@ -115,7 +115,7 @@
         enemy.data.values.nivel += 1;
 
         //if passed by 5 shoot bomb
-        if (enemy.getData('nivel') == 1) {
+        if (enemy.getData('nivel') == 5) {
             setTimeout(() => {
                 const vx = (enemy.getData('start_on') == "left") ? 30 : -30;
                 this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 50});

@@ -19,7 +19,7 @@ export default class Bomb extends Phaser.Physics.Arcade.Sprite {
         this.y =  config.y;
         this.body.velocity.x = config.vx;
         this.body.velocity.y = config.vy;
-        //gravity
+        
     }
 
 }
