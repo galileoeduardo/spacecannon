@@ -16,6 +16,7 @@ export default class Level extends Phaser.Scene {
     static BombGroup;
     static PlataformaGroup;
     static TextScore;
+    static LifeBar;
     static Enemies;
     static Keyboard;
     static Player;
@@ -39,7 +40,7 @@ export default class Level extends Phaser.Scene {
 
     create() {
         this.data.score = 0;
-        this.data.live = 100;
+        this.data.life = 100;
 
         this.Enemies = new Enemies(this);
         this.BulletGroup = new BulletGroup(this);
@@ -57,7 +58,6 @@ export default class Level extends Phaser.Scene {
         
         this.add.image(400,50,'bg_planet').setOrigin(0,0);
 
-        //this.Text = this.add.text(10, 20, '', { font: '10px Courier', fill: '#00ff00' });
         this.add.image(0,200,'plataforma01').setOrigin(0,0);
         this.add.image(462,200,'plataforma02').setOrigin(0,0);
         this.PlataformaGroup = new PlataformaGroup(this);
@@ -70,7 +70,10 @@ export default class Level extends Phaser.Scene {
         this.Enemies.create();
 
         this.Animation.create();
-        this.MyInputs.create();        
+        this.MyInputs.create();
+
+        this.Text = this.add.bitmapText(370, 15, 'sunset', 'life', 10, 1).setOrigin(0.5);
+        this.LifeBar = this.add.image(400,12,'lifebar').setOrigin(0);
         
     }
 
@@ -81,6 +84,8 @@ export default class Level extends Phaser.Scene {
         
 
         this.TextScore.setText(this.data.score);
+        this.LifeBar.scaleX = this.data.life / 100;
+        
         
         if (this.MyInputs.Cursors.left.isDown) {
             //this.BulletGroup.fireBulletLeft(this.time.now);

@@ -23,6 +23,8 @@
         this.load.image('plataforma04', 'sprites/plataforma04.png');
         this.load.image('plataforma05', 'sprites/plataforma05.png');
 
+        this.load.image('lifebar', 'sprites/lifebar.png');
+
         this.load.image('explosion', 'sprites/explosion.png');
         this.load.image('observatorio', 'sprites/observatorio.png');
         this.load.image('celula', 'sprites/celula.png');

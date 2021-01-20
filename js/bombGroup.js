@@ -60,9 +60,9 @@ export default class BombGroup extends Phaser.Physics.Arcade.Group {
             y: bomb.y
         });
 
-        bomb.play('explode');
         bomb.setVelocityX(0);
         bomb.setVelocityY(0);
+        
         this._scene.children.remove(bomb);
         
         this._scene.data.life -= 5;

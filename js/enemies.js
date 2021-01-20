@@ -3,7 +3,7 @@
     timedEnemyLaunchEvent;
 
     enemies_actual_position = new Array();
-    speed = 50;
+    speed = 60;
 
     config = [ 
         { id:"enemy01", scale: 1, force: 3.8 },
@@ -117,13 +117,11 @@
         //if passed by 5 shoot bomb
         if (enemy.getData('nivel') == 5) {
             setTimeout(() => {
-                const vx = (enemy.getData('start_on') == "left") ? 30 : -30;
-                this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 50});
-            }, 1500);
+                const vx = (enemy.getData('start_on') == "left") ? 40 : -40;
+                this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 60});
+            }, enemy.getData('force') * 120);
             
         }
-
-        console.log(enemy.getData('nivel'));
         
     }
 
