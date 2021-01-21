@@ -19,9 +19,38 @@
         this.load.image('plataforma01', 'sprites/plataforma01.png');
         this.load.image('plataforma02', 'sprites/plataforma02.png');
 
-        this.load.image('plataforma03', 'sprites/plataforma03.png');
-        this.load.image('plataforma04', 'sprites/plataforma04.png');
-        this.load.image('plataforma05', 'sprites/plataforma05.png');
+        this.load.spritesheet(
+            'plataforma03',
+            'sprites/plataforma03.png',
+            {
+                frameWidth: 152,
+                frameHeight: 31,
+                startFrame: 0,
+                endFrame: 2
+            }
+        );
+
+        this.load.spritesheet(
+            'plataforma04',
+            'sprites/plataforma04.png',
+            {
+                frameWidth: 208,
+                frameHeight: 25,
+                startFrame: 0,
+                endFrame: 2
+            }
+        );
+
+        this.load.spritesheet(
+            'plataforma05',
+            'sprites/plataforma05.png',
+            {
+                frameWidth: 152,
+                frameHeight: 31,
+                startFrame: 0,
+                endFrame: 2
+            }
+        );        
 
         this.load.image('lifebar', 'sprites/lifebar.png');
 

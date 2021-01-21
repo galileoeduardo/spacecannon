@@ -10,13 +10,6 @@ export default class BombGroup extends Phaser.Physics.Arcade.Group {
         this._scene = scene;
         
 
-        scene.anims.create({
-            key: 'loop',
-            frameRate: 12,
-            frames: scene.anims.generateFrameNumbers('bomb', { start: 0, end: 1}),
-            repeat: -1
-        });
-
         this.createMultiple({
             classType: Bomb,
             frameQuantity: 3,
@@ -40,7 +33,9 @@ export default class BombGroup extends Phaser.Physics.Arcade.Group {
     }
 
     bombHit(plat,bomb) {
-       
+
+        plat.play(plat.texture.key+'hit');
+
         const particles = this._scene.add.particles('explosion');
 
         particles.createEmitter({
