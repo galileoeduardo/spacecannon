@@ -1,5 +1,5 @@
 import Loader from './loader.js';
-import Level from './level.js';
+import Level1 from './level1.js';
 
 const config = {
         type: Phaser.AUTO,
@@ -18,7 +18,7 @@ const config = {
         },
     scene: [
         Loader,
-        Level
+        Level1
     ]
 };
 

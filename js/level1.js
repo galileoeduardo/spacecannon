@@ -8,7 +8,7 @@ import Enemies from './enemies.js';
 import MyInputs from './myinputs.js';
 import Player from './player.js';
 
-export default class Level extends Phaser.Scene {
+export default class Level1 extends Phaser.Scene {
     
     static Animation;
     static PowerUp;
@@ -24,7 +24,7 @@ export default class Level extends Phaser.Scene {
     
     constructor() {
         super({
-            key: "Level"
+            key: "Level1"
         });
 
         
@@ -39,9 +39,7 @@ export default class Level extends Phaser.Scene {
     preload() {}
 
     create() {
-        this.data.score = 0;
-        this.data.life = 100;
-
+        
         //Enemies
         this.Enemies = new Enemies(this);
         this.BombGroup = new BombGroup(this);
@@ -68,9 +66,9 @@ export default class Level extends Phaser.Scene {
         this.MyInputs.create();
 
         //HUD
-        this.TextScore = this.add.bitmapText(256, 16, 'sunset', '', 16, 1).setOrigin(0.5).setCenterAlign();
-        this.Text = this.add.bitmapText(370, 15, 'sunset', 'life', 10, 1).setOrigin(0.5);
-        this.LifeBar = this.add.image(400,12,'lifebar').setOrigin(0);
+        this.TextScore = this.add.bitmapText(256, 16, 'sunset', '0', 16, 1).setOrigin(0.5).setCenterAlign();
+        this.Text = this.add.bitmapText(362, 14, 'sunset', 'shield', 10, 1).setOrigin(0.5);
+        this.ShieldBar = this.add.image(400,12,'shieldbar').setOrigin(0);
         
         //Global
         this.Animation.create();
@@ -81,11 +79,6 @@ export default class Level extends Phaser.Scene {
         this.Cannon.update();
         this.Enemies.update();
         this.BombGroup.update();
-        
-
-        this.TextScore.setText(this.data.score);
-        this.LifeBar.scaleX = this.data.life / 100;
-        
         
         if (this.MyInputs.Cursors.left.isDown) {
             //this.BulletGroup.fireBulletLeft(this.time.now);

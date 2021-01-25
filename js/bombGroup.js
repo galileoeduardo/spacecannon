@@ -60,7 +60,7 @@ export default class BombGroup extends Phaser.Physics.Arcade.Group {
         
         this._scene.children.remove(bomb);
         
-        this._scene.data.life -= 5;
+        this._scene.registry.set('shield', this._scene.registry.list.shield - 5);
 
     }
 

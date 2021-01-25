@@ -8,7 +8,7 @@
     preload() {
 
         this.load.on('complete', () => {
-            this.scene.start('Level');
+            this.scene.start('Level1');
         });
 
         this.load.setBaseURL('/assets/');
@@ -52,7 +52,7 @@
             }
         );        
 
-        this.load.image('lifebar', 'sprites/lifebar.png');
+        this.load.image('shieldbar', 'sprites/lifebar.png');
 
         this.load.image('explosion', 'sprites/explosion.png');
         this.load.image('observatorio', 'sprites/observatorio.png');
@@ -178,9 +178,25 @@
 
     create() {
 
-        
+        this.registry.set('score',0);
+        this.registry.set('shield',100);
+        this.registry.set('shield_plus',0);
+        this.registry.set('level',1);
+
+        this.registry.events.on('changedata',this.updateData,this);
 
     }
-    update() {}
+    
+    updateData(parent, key, data) {
+        
+        const scene_hud = this.scene.get('Level'+ this.registry.list.level);
+
+        if (key == 'score') {
+            scene_hud.TextScore.setText(data);
+        } else if (key == 'shield') {
+            scene_hud.ShieldBar.scaleX = data / 100;
+        }
+
+    }
 
 }

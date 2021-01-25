@@ -6,16 +6,16 @@
     speed = 60;
 
     config = [ 
-        { id:"enemy01", scale: 1, force: 3.8 },
-        { id:"enemy01", scale: 1, force: 3.6 },
-        { id:"enemy01", scale: 1, force: 3.4 },
-        { id:"enemy02", scale: 1, force: 3.6 },
-        { id:"enemy02", scale: 1, force: 3.2 },
-        { id:"enemy02", scale: 1, force: 3.1 },
-        { id:"enemy02", scale: 1, force: 3.0 },
-        { id:"enemy03", scale: 1, force: 5.1 },
-        { id:"enemy03", scale: 1, force: 6.1 },
-        { id:"enemy03", scale: 1, force: 8.1 }
+        { id:"enemy01", scale: .50, force: 3.8 },
+        { id:"enemy01", scale: .50, force: 3.6 },
+        { id:"enemy01", scale: .50, force: 3.4 },
+        { id:"enemy02", scale: .50, force: 3.6 },
+        { id:"enemy02", scale: .50, force: 3.2 },
+        { id:"enemy02", scale: .50, force: 3.1 },
+        { id:"enemy02", scale: .50, force: 3.0 },
+        { id:"enemy03", scale: .50, force: 5.1 },
+        { id:"enemy03", scale: .50, force: 6.1 },
+        { id:"enemy03", scale: .50, force: 8.1 }
     ];
 
     enemies_launch = { next: 0, total: this.config.length};
@@ -75,6 +75,7 @@
         const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
         enemy.setData(this.config.shift());
+        enemy.setScale(enemy.getData("scale"));
 
         if (enemy.getData("start_on") == 'left') {
             enemy.body.velocity.x = enemy.getData("force") * this.speed;
@@ -113,12 +114,14 @@
         enemy.x = enemy.getData("start_x");
         enemy.y += 20;
         enemy.data.values.nivel += 1;
+        enemy.setData('scale',enemy.getData("scale") + .10)
+        enemy.setScale(enemy.getData("scale"));
 
         //if passed by 5 shoot bomb
         if (enemy.getData('nivel') == 5) {
             setTimeout(() => {
                 const vx = (enemy.getData('start_on') == "left") ? 40 : -40;
-                this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 60});
+                this._scene.BombGroup.fireBomb({x: enemy.x, y:enemy.y + 10, vx: vx, vy: 80});
             }, enemy.getData('force') * 120);
             
         }
@@ -156,7 +159,7 @@
         enemy.setActive(false);
 
         this._scene.children.remove(enemy);
-        this._scene.data.score += enemy.getData('force') * 10;
+        this._scene.registry.set('score',this._scene.registry.list.score + (enemy.getData('force') * 10));
 
     }
 
