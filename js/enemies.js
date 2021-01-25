@@ -130,18 +130,18 @@
         const particles = this._scene.add.particles('explosion');
 
         particles.createEmitter({
-            alpha: { start: 1, end: 0 },
-            scale: { start: 0.5, end: 2.0 },
-            tint: { start: 0x6666ff, end: 0x6666ff },
-            speed: 20,
+            alpha: { start: 1, end: .0 },
+            scale: { start: 0.5, end: 2.5 },
+            //tint: { start: 0xffCCCC, end: 0x000000 },
+            speed: 5,
             accelerationY: 0,
             accelerationX: 0,
             angle: { min: -360, max: 360 },
-            rotate: { min: -360, max: 360 },
-            lifespan: { min: 750, max: 800 },
+            rotate: { min: -180, max: 180 },
+            lifespan: { min: 250, max: 350 },
             blendMode: 'ADD',
-            frequency: 0,
-            maxParticles: 5,
+            frequency: 10,
+            maxParticles: 8,
             x: enemy.x,
             y: enemy.y
         });
