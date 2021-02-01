@@ -16,11 +16,13 @@ export default class Level1 extends Phaser.Scene {
     static BombGroup;
     static PlataformaGroup;
     static TextScore;
+    static TextLevel;
     static LifeBar;
     static Enemies;
     static Keyboard;
     static Player;
     static Cannon;
+    timedEnemyLaunchEvent;
     
     constructor() {
         super({
@@ -43,7 +45,6 @@ export default class Level1 extends Phaser.Scene {
         //Enemies
         this.Enemies = new Enemies(this);
         this.BombGroup = new BombGroup(this);
-        this.Enemies.create();
 
         //Background
         const bg_color = this.add.graphics();
@@ -67,24 +68,37 @@ export default class Level1 extends Phaser.Scene {
 
         //HUD
         this.TextScore = this.add.bitmapText(256, 16, 'sunset', '0', 16, 1).setOrigin(0.5).setCenterAlign();
+        this.TextLevel = this.add.bitmapText(256, 128, 'sunset', 'LEVEL' + this.registry.list.level, 16, 1).setOrigin(0.5).setCenterAlign().setName('LevelText').setAlpha(0);
         this.Text = this.add.bitmapText(362, 14, 'sunset', 'shield', 10, 1).setOrigin(0.5);
         this.ShieldBar = this.add.image(400,12,'shieldbar').setOrigin(0);
         
         //Global
         this.Animation.create();
+
+        //Start level
+
         
+        
+        setTimeout(() =>
+                this.tweens.add({
+                    targets: this.TextLevel,
+                    alpha: 1, // '+=100'
+                    ease: "Cubic", // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    duration: 1000,
+                    repeat: 0,
+                    yoyo: true
+                })
+        ,0);
+        
+        setTimeout(this.timedEnemyLaunchEvent = setInterval(() => this.Enemies.launch(), 1000));
+
     }
 
     update() {
+
         this.Cannon.update();
         this.Enemies.update();
         this.BombGroup.update();
-        
-        if (this.MyInputs.Cursors.left.isDown) {
-            //this.BulletGroup.fireBulletLeft(this.time.now);
-        } else if (this.MyInputs.Cursors.right.isDown) {
-            //this.BulletGroup.fireBulletRight(this.time.now);
-        }
 
     }
 

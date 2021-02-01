@@ -1,7 +1,5 @@
 ﻿export default class Enemies {
 
-    timedEnemyLaunchEvent;
-
     enemies_actual_position = new Array();
     speed = 60;
 
@@ -37,10 +35,6 @@
         }
     }
 
-    create() {
-        this.timedEnemyLaunchEvent = setInterval(this.launch, 5000);
-    }
-
     update() {
 
         const enemies = this._scene.children.getAll( "name" , "enemies_ship");
@@ -70,7 +64,7 @@
         return Phaser.Math.Between(0, 1);
     }
 
-    launch = () => {
+    launch = (resolve) => {
 
         const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
@@ -97,7 +91,10 @@
 
         enemy.play(enemy.getData('id') + 'loop');
 
-        if(this.config.length <= 0) clearInterval(this.timedEnemyLaunchEvent); //stop launch
+        if(this.config.length <= 0) {
+            clearInterval(this._scene.timedEnemyLaunchEvent); //stop launch
+            console.log("End level");
+        }
 
     }
 
