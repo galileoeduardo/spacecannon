@@ -111,7 +111,10 @@
         //if not enemies on stage
         if (this._scene.children.getByName('enemies_ship') == null) {
             this._scene.events.off('enemyOnStage');
-            this._scene.events.off('enemyListened'); 
+            this._scene.events.off('enemyListened');
+            
+            this._scene.TextLevel.setText('LEVEL 2');
+            this._scene.TweenTextLevel.play();
             console.log('Next level');
         }
     };

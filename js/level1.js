@@ -17,6 +17,7 @@ export default class Level1 extends Phaser.Scene {
     static PlataformaGroup;
     static TextScore;
     static TextLevel;
+    static TweenTextLevel;
     static LifeBar;
     static Enemies;
     static Keyboard;
@@ -71,6 +72,16 @@ export default class Level1 extends Phaser.Scene {
         this.TextLevel = this.add.bitmapText(256, 128, 'sunset', 'LEVEL' + this.registry.list.level, 16, 1).setOrigin(0.5).setCenterAlign().setName('LevelText').setAlpha(0);
         this.Text = this.add.bitmapText(362, 14, 'sunset', 'shield', 10, 1).setOrigin(0.5);
         this.ShieldBar = this.add.image(400,12,'shieldbar').setOrigin(0);
+
+        this.TweenTextLevel = this.tweens.add({
+            targets: this.TextLevel,
+            paused: true,
+            alpha: 1, // '+=100'
+            ease: "Cubic", // 'Cubic', 'Elastic', 'Bounce', 'Back'
+            duration: 1000,
+            repeat: 0,
+            yoyo: true
+        });
         
         //Global
         this.Animation.create();
@@ -78,17 +89,7 @@ export default class Level1 extends Phaser.Scene {
         
         
         //Start level
-        setTimeout(() =>
-                this.tweens.add({
-                    targets: this.TextLevel,
-                    alpha: 1, // '+=100'
-                    ease: "Cubic", // 'Cubic', 'Elastic', 'Bounce', 'Back'
-                    duration: 1000,
-                    repeat: 0,
-                    yoyo: true
-                })
-        ,0);
-
+        this.TweenTextLevel.play();
         this.events.emit('enemyLaunched');
 
     }
