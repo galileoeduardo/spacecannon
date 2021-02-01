@@ -22,7 +22,7 @@ export default class Level1 extends Phaser.Scene {
     static Keyboard;
     static Player;
     static Cannon;
-    timedEnemyLaunchEvent;
+    static timedEnemyEvent;
     
     constructor() {
         super({
@@ -74,7 +74,9 @@ export default class Level1 extends Phaser.Scene {
         
         //Global
         this.Animation.create();
-
+        
+        
+        
         //Start level
         setTimeout(() =>
                 this.tweens.add({
@@ -86,8 +88,8 @@ export default class Level1 extends Phaser.Scene {
                     yoyo: true
                 })
         ,0);
-        
-        setTimeout(this.timedEnemyLaunchEvent = setInterval(() => this.Enemies.launch(), Math.floor(Math.random() * 4000) + 1000));
+
+        this.events.emit('enemyLaunched');
 
     }
 

@@ -33,6 +33,13 @@
             this.config[i] = addConfig;
             
         }
+        
+        scene.events.addListener('launchEnemyEvent',this.launch,scene);
+        scene.events.addListener('enemyLaunched',() => setInterval(() => scene.events.emit('launchEnemyEvent'), Math.floor(Math.random() * 3000) + 1000));
+        
+        scene.events.addListener('enemyOnStage',this.enemyOnStage,scene);
+        scene.events.addListener('enemyListened',() => setInterval(() => scene.events.emit('enemyOnStage'), 1000));
+
     }
 
     update() {
@@ -64,7 +71,7 @@
         return Phaser.Math.Between(0, 1);
     }
 
-    launch = (resolve) => {
+    launch = () => {
 
         const enemy = this._scene.physics.add.sprite(0,0,this.config[0].id,0);
         enemy.name = "enemies_ship";
@@ -92,11 +99,23 @@
         enemy.play(enemy.getData('id') + 'loop');
 
         if(this.config.length <= 0) {
-            clearInterval(this._scene.timedEnemyLaunchEvent); //stop launch
-            console.log("End level");
+            this._scene.events.removeListener('enemyLaunched'); //stop launch
+            this._scene.events.removeListener('launchEnemyEvent'); //remove launch event
+
+            this._scene.events.emit('enemyListened');
         }
 
     }
+
+    enemyOnStage = () => {
+        //if not enemies on stage
+        if (this._scene.children.getByName('enemies_ship') == null) {
+            this._scene.events.off('enemyOnStage');
+            this._scene.events.off('enemyListened'); 
+            console.log('Next level');
+        }
+    };
+    
 
     moveLower(enemy) {
 
