@@ -95,9 +95,11 @@ export default class Level1 extends Phaser.Scene {
 
     update() {
 
+        this.MyInputs.update();
         this.Cannon.update();
         this.Enemies.update();
         this.BombGroup.update();
+
 
     }
 

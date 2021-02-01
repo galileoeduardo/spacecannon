@@ -3,12 +3,13 @@ import Level1 from './level1.js';
 
 const config = {
         type: Phaser.AUTO,
+        parent: 'stage',
         disableContextMenu: true,
         pixelArt: true,
+        width: 512,
+        height: 256,
         scale: {
-            parent: 'stage',
-            width: 512,
-            height: 256
+            mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT
         },
         physics: {
             default: 'arcade',
