@@ -22,7 +22,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
 
     }
 
-    fireBullet(time,cannon,angle) {
+    fireBullet(time,cannon,type) {
 
         const config = {
             left: {
@@ -51,8 +51,8 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
                 case 'right':
                     bullet = this.getFirstDead(true);
                     if (bullet) {
-                        bullet.fire(config[cannon][angle]);
-                        this.bulletTime = time + 600;
+                        bullet.fire(config[cannon][type]);
+                        this.bulletTime = time + 250;
                     }
                     break;
                 case 'center':
@@ -60,7 +60,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
                     if (this.powerUp.center == 0) {
                         bullet = this.getFirstDead(true);
                         if (bullet) {
-                            bullet.fire(config[cannon][angle]);
+                            bullet.fire(config[cannon][type]);
                         }
                     } else if (this.powerUp.center == 1) {
                         for (let index = 0; index < 3; index++) {
@@ -70,7 +70,7 @@ export default class BulletGroup extends Phaser.Physics.Arcade.Group {
                             }
                         }
                     }
-                    this.bulletTime = time + 600;
+                    this.bulletTime = time + 250;
                     break;
                     
                 default:

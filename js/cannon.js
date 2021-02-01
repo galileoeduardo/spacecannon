@@ -22,25 +22,6 @@
             this.pointer = this.input.activePointer;
         },this._scene);
 
-        cannon_left.on('pointermove', function (event) {
-            if (event.isDown == true) {
-
-                const distance = Phaser.Math.Distance.Between(event.downX, event.downY, event.x, event.y);
-
-                if(distance >= 7.5 && event.downTime > 3000) {
-                    const direction = ((event.angle * Phaser.Math.RAD_TO_DEG) > 0) ? 'down' : 'up';
-                    this.Cannon.setAngle('cannon_left',direction);
-                    event.downTime = 0;
-                }
-
-            }
-        },this._scene);
-
-        cannon_left.on('pointerup', function (event) {
-            //event.downTime = 0;
-           
-        },this._scene);
-
         //cannon right
         
         const cannon_right = this._scene.add.sprite(498,196,'cannon_right').setOrigin(0.7,0.7).setInteractive();
@@ -49,25 +30,6 @@
         cannon_right.on('pointerdown', function (event) {
             this.BulletGroup.fireBullet(this.time.now,'right',this.Cannon.cannon_rotation["cannon_right"]);
             this.pointer = this.input.activePointer;
-        },this._scene);
-
-        cannon_right.on('pointermove', function (event) {
-            if (event.isDown == true) {
-
-                const distance = Phaser.Math.Distance.Between(event.downX, event.downY, event.x, event.y);
-
-                if(distance >= 7.5 && event.downTime > 3000) {
-                    const direction = ((event.angle * Phaser.Math.RAD_TO_DEG) > 0) ? 'up' : 'down';
-                    this.Cannon.setAngle('cannon_right',direction);
-                    event.downTime = 0;
-                }
-
-            }
-        },this._scene);
-
-        cannon_right.on('pointerup', function (event) {
-            //event.downTime = 0;
-           
         },this._scene);
 
         //cannon center
