@@ -76,9 +76,6 @@ export default class Level1 extends Phaser.Scene {
         this.Animation.create();
 
         //Start level
-
-        
-        
         setTimeout(() =>
                 this.tweens.add({
                     targets: this.TextLevel,
@@ -90,7 +87,7 @@ export default class Level1 extends Phaser.Scene {
                 })
         ,0);
         
-        setTimeout(this.timedEnemyLaunchEvent = setInterval(() => this.Enemies.launch(), 1000));
+        setTimeout(this.timedEnemyLaunchEvent = setInterval(() => this.Enemies.launch(), Math.floor(Math.random() * 4000) + 1000));
 
     }
 
