@@ -4,16 +4,16 @@
     speed = 60;
 
     config = [ 
-        { id:"enemy01", scale: .7, force: 3.8 },
-        { id:"enemy01", scale: .7, force: 3.6 },
-        { id:"enemy01", scale: .7, force: 3.4 },
-        { id:"enemy02", scale: .7, force: 3.6 },
-        { id:"enemy02", scale: .7, force: 3.2 },
-        { id:"enemy02", scale: .7, force: 3.1 },
-        { id:"enemy02", scale: .7, force: 3.0 },
-        { id:"enemy03", scale: .7, force: 5.1 },
-        { id:"enemy03", scale: .7, force: 6.1 },
-        { id:"enemy03", scale: .7, force: 8.1 }
+        { id:"enemy01", scale: .75, force: 3.8 },
+        { id:"enemy01", scale: .75, force: 3.6 },
+        { id:"enemy01", scale: .75, force: 3.4 },
+        { id:"enemy02", scale: .75, force: 3.6 },
+        { id:"enemy02", scale: .75, force: 3.2 },
+        { id:"enemy02", scale: .75, force: 3.1 },
+        { id:"enemy02", scale: .75, force: 3.0 },
+        { id:"enemy03", scale: .65, force: 5.1 },
+        { id:"enemy03", scale: .65, force: 6.1 },
+        { id:"enemy03", scale: .65, force: 8.1 }
     ];
 
     enemies_launch = { next: 0, total: this.config.length};
