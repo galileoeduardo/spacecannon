@@ -4,7 +4,7 @@
     speed = 60;
 
     config = [ 
-        { id:"enemy01", scale: .75, force: 3.8 },
+        { id:"enemy01", scale: .75, force: 3 },
         { id:"enemy01", scale: .75, force: 3.6 },
         { id:"enemy01", scale: .75, force: 3.4 },
         { id:"enemy02", scale: .75, force: 3.6 },
@@ -13,7 +13,27 @@
         { id:"enemy02", scale: .75, force: 3.0 },
         { id:"enemy03", scale: .65, force: 5.1 },
         { id:"enemy03", scale: .65, force: 6.1 },
-        { id:"enemy03", scale: .65, force: 8.1 }
+        { id:"enemy03", scale: .65, force: 8.1 },
+        { id:"enemy01", scale: .75, force: 4 },
+        { id:"enemy01", scale: .75, force: 4.2 },
+        { id:"enemy01", scale: .75, force: 4.4 },
+        { id:"enemy02", scale: .75, force: 4.6 },
+        { id:"enemy02", scale: .75, force: 4.8 },
+        { id:"enemy02", scale: .75, force: 4.4 },
+        { id:"enemy02", scale: .75, force: 4.6 },
+        { id:"enemy03", scale: .65, force: 7.5 },
+        { id:"enemy03", scale: .65, force: 8.1 },
+        { id:"enemy03", scale: .65, force: 9.1 },
+        { id:"enemy01", scale: .75, force: 5 },
+        { id:"enemy01", scale: .75, force: 5.2 },
+        { id:"enemy01", scale: .75, force: 5.4 },
+        { id:"enemy02", scale: .75, force: 6.6 },
+        { id:"enemy02", scale: .75, force: 7.8 },
+        { id:"enemy02", scale: .75, force: 8.4 },
+        { id:"enemy02", scale: .75, force: 8.6 },
+        { id:"enemy03", scale: .65, force: 8.9 },
+        { id:"enemy03", scale: .65, force: 9.5 },
+        { id:"enemy03", scale: .65, force: 10 }
     ];
 
     enemies_launch = { next: 0, total: this.config.length};
